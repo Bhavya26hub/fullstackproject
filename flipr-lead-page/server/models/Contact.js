@@ -7,4 +7,11 @@ const ContactSchema = new mongoose.Schema({
   city: { type: String },
 }, { timestamps: true });
 
-export default mongoose.models.Contact || mongoose.model('Contact', ContactSchema);
+let Contact;
+if (mongoose.models.Contact) {
+  Contact = mongoose.models.Contact;
+} else {
+  Contact = mongoose.model('Contact', ContactSchema);
+}
+
+export default Contact;

@@ -10,6 +10,14 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// 🔍 LOG EVERY REQUEST
+app.use((req, res, next) => {
+  console.log(`\n🚀 [${req.method}] ${req.path}`);
+  console.log('Body:', req.body);
+  next();
+});
+
 app.use('/api', apiRoutes);
 
 const connectOptions = {
